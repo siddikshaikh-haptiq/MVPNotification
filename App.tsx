@@ -1,5 +1,6 @@
 import React from 'react';
-import {StatusBar, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {StatusBar} from 'expo-status-bar';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {ThemeProvider, useTheme} from '@context/ThemeContext';
 import {AuthProvider} from '@context/AuthContext';
@@ -11,10 +12,7 @@ const AppContent: React.FC = () => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
-      <StatusBar
-        barStyle={isDark ? 'light-content' : 'dark-content'}
-        backgroundColor={colors.background}
-      />
+      <StatusBar style={isDark ? 'light' : 'dark'} />
       <AppNavigator />
     </SafeAreaView>
   );

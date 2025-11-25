@@ -13,7 +13,7 @@ Mobile application in **React Native + TypeScript** for comprehensive management
 
 ## 🧱 Stack and Architecture
 
-* **React Native 0.82 · React 19** using functional components and hooks.
+* **Expo SDK 52** with **React Native 0.82 · React 19** using functional components and hooks.
 * **TypeScript** with shared types in `src/types`.
 * **React Navigation (stack + bottom tabs)** for multi-module flows.
 * **NativeWind/TailwindCSS** for declarative responsive styles.
@@ -40,21 +40,28 @@ Mobile application in **React Native + TypeScript** for comprehensive management
    * Create a `.env` file in the project root.
    * Define `GOOGLE_WEB_CLIENT_ID` (used in `src/config/env.ts`).
 
-3. **Start Metro**  
+3. **Add app assets (optional)**  
+   * Create an `assets` folder in the project root.
+   * Add `icon.png`, `splash.png`, `adaptive-icon.png`, and `favicon.png` as needed.
+   * Or update `app.json` to remove asset references if not using them.
+
+4. **Start Expo**  
    ```bash
    npm start
+   # This will start the Expo development server
    ```
 
-4. **Run the app**  
+5. **Run the app**  
    ```bash
-   npm run android
-   npm run ios   # remember `bundle install && bundle exec pod install` the first time
+   npm run android   # Runs on Android emulator/device
+   npm run ios       # Runs on iOS simulator/device
+   # Or use Expo Go app: scan QR code from the terminal
    ```
 
 ## 📦 Available Scripts
 
-* `npm start` · Start Metro.
-* `npm run android` / `npm run ios` · Compile and deploy to emulator/device.
+* `npm start` · Start Expo development server.
+* `npm run android` / `npm run ios` · Compile and deploy to emulator/device using Expo.
 * `npm run lint` · Run ESLint.
 * `npm test` · Run Jest.
 * `npm run generate-icons` · Generate adaptive icons from `scripts/generate-icons.js`.
@@ -93,6 +100,3 @@ Current tests use Jest and `@testing-library/react-native`. Add specs in `__test
 * **Android**: `npm run build:apk` produces `releases/MVPNotification-debug.apk`.
 * **iOS**: open `ios/MVPNotification.xcworkspace` and generate the `MVPNotification` scheme from Xcode (use the same `GOOGLE_WEB_CLIENT_ID` in the corresponding entitlements).
 
----
-
-Questions or new ideas? Open an issue or start a PR. 👋
