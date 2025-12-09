@@ -36,12 +36,30 @@ The app now supports:
 
 ## Setup
 
+### WebSocket Server Setup
+
+The app requires a WebSocket server to receive location updates. A server is included in the `server/` directory.
+
+**Quick Start:**
+
+1. Install server dependencies:
+   ```bash
+   npm run server:install
+   ```
+
+2. Start the server:
+   ```bash
+   npm run server:dev
+   ```
+
+The server will start on `http://localhost:3000` by default. See `server/README.md` for detailed documentation.
+
 ### Environment Variables
 
 Add the following to your `.env` file:
 
 ```env
-SOCKET_URL=ws://your-socket-server.com
+SOCKET_URL=ws://localhost:3000
 LOCATION_UPDATE_INTERVAL=5000
 LOCATION_ACCURACY=balanced
 ```

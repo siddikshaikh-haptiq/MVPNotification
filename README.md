@@ -8,6 +8,7 @@ Mobile application built with **Expo**, **React Native**, and **TypeScript** for
 * Reminder management with integration to local notification channels using `@notifee/react-native`.
 * Configurable business calendars and automatic event synchronization.
 * Personal tasks module with recurrences, priorities, states, and minute-by-minute alerts.
+* **Live Location Tracking** with foreground and background support via WebSockets.
 * Adaptive experience thanks to the `useResponsive` hook and full support for light/dark mode.
 * Authentication flow ready for Google Sign-In via `GOOGLE_WEB_CLIENT_ID`.
 
@@ -46,8 +47,21 @@ Mobile application built with **Expo**, **React Native**, and **TypeScript** for
    GOOGLE_WEB_CLIENT_ID=your_google_client_id_here
    API_BASE_URL=https://api.example.com
    ENABLE_NOTIFICATIONS=true
+   SOCKET_URL=ws://localhost:3000
+   LOCATION_UPDATE_INTERVAL=5000
+   LOCATION_ACCURACY=balanced
    ```
    These are used in `src/config/env.ts`.
+
+3. **Set up the WebSocket server** (for location tracking):
+   ```bash
+   # Install server dependencies
+   npm run server:install
+   
+   # Start server in development mode
+   npm run server:dev
+   ```
+   See `server/README.md` for detailed server documentation.
 
 3. **Add app assets (optional)**  
    Create an `assets` folder in the project root and add:
@@ -109,12 +123,19 @@ Mobile application built with **Expo**, **React Native**, and **TypeScript** for
 src/
  ├─ components/        # Reusable animations, buttons and modals
  ├─ config/            # Env vars, calendar types
- ├─ context/           # Theme and authentication
+ ├─ context/           # Theme, authentication, and location tracking
  ├─ hooks/             # Responsive design hook
  ├─ navigation/        # Stack + tabs
- ├─ screens/           # Companies, Reminders, PersonalTasks, Dashboard…
- ├─ services/          # HTTP calls and synchronization logic
+ ├─ screens/           # Companies, Reminders, PersonalTasks, Dashboard, LiveTracking…
+ ├─ services/          # HTTP calls, location tracking, socket communication
  └─ types/             # Shared types
+
+server/                # WebSocket server for location tracking
+ ├─ src/              # Server source code
+ │  ├─ index.ts       # Main server file
+ │  └─ types.ts       # TypeScript types
+ ├─ package.json      # Server dependencies
+ └─ README.md         # Server documentation
 ```
 
 ## 🔔 Notifications and Reminders
