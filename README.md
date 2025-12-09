@@ -9,6 +9,7 @@ Mobile application built with **Expo**, **React Native**, and **TypeScript** for
 * Configurable business calendars and automatic event synchronization.
 * Personal tasks module with recurrences, priorities, states, and minute-by-minute alerts.
 * **Live Location Tracking** with foreground and background support via WebSockets.
+* **Voice-to-Text Input** with real-time transcription, similar to YouTube and Google.
 * Adaptive experience thanks to the `useResponsive` hook and full support for light/dark mode.
 * Authentication flow ready for Google Sign-In via `GOOGLE_WEB_CLIENT_ID`.
 
@@ -50,6 +51,8 @@ Mobile application built with **Expo**, **React Native**, and **TypeScript** for
    SOCKET_URL=ws://localhost:3000
    LOCATION_UPDATE_INTERVAL=5000
    LOCATION_ACCURACY=balanced
+   GOOGLE_SPEECH_API_KEY=your_google_speech_api_key_here
+   SPEECH_LANGUAGE=en-US
    ```
    These are used in `src/config/env.ts`.
 
@@ -127,7 +130,7 @@ src/
  ├─ hooks/             # Responsive design hook
  ├─ navigation/        # Stack + tabs
  ├─ screens/           # Companies, Reminders, PersonalTasks, Dashboard, LiveTracking…
- ├─ services/          # HTTP calls, location tracking, socket communication
+ ├─ services/          # HTTP calls, location tracking, socket communication, speech recognition
  └─ types/             # Shared types
 
 server/                # WebSocket server for location tracking

@@ -20,9 +20,11 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app needs access to your location to provide live tracking features.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to your location in the background to provide continuous tracking features.",
+        "NSMicrophoneUsageDescription": "This app needs access to your microphone to provide voice input features.",
         "UIBackgroundModes": [
           "location",
-          "fetch"
+          "fetch",
+          "audio"
         ]
       }
     },
@@ -37,7 +39,8 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_BACKGROUND_LOCATION",
         "FOREGROUND_SERVICE",
-        "FOREGROUND_SERVICE_LOCATION"
+        "FOREGROUND_SERVICE_LOCATION",
+        "RECORD_AUDIO"
       ]
     },
     "web": {
@@ -58,6 +61,12 @@
           "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location for live tracking.",
           "locationAlwaysPermission": "Allow $(PRODUCT_NAME) to use your location in the background for continuous tracking.",
           "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location for live tracking."
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone for voice input."
         }
       ]
     ],

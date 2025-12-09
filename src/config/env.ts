@@ -5,5 +5,9 @@ export const ENV = {
   ENABLE_NOTIFICATIONS: process.env.ENABLE_NOTIFICATIONS !== 'false',
   LOCATION_UPDATE_INTERVAL: parseInt(process.env.LOCATION_UPDATE_INTERVAL || '5000', 10),
   LOCATION_ACCURACY: process.env.LOCATION_ACCURACY || 'balanced',
+  // Speech Recognition
+  GOOGLE_SPEECH_API_KEY: process.env.GOOGLE_SPEECH_API_KEY || '',
+  SPEECH_API_URL: process.env.SPEECH_API_URL || '',
+  SPEECH_LANGUAGE: process.env.SPEECH_LANGUAGE || 'en-US',
 };
 

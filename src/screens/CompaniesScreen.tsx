@@ -129,6 +129,10 @@ export const CompaniesScreen: React.FC = () => {
           placeholder="Company name"
           value={newCompany.name}
           onChangeText={text => setNewCompany({...newCompany, name: text})}
+          enableVoiceInput={true}
+          onVoiceResult={(text) =>
+            setNewCompany({...newCompany, name: text})
+          }
         />
         <Input
           label="Tax ID"
