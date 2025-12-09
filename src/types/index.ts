@@ -75,3 +75,29 @@ export type ThemeMode = 'light' | 'dark' | 'system';
 
 export type FilterType = 'all' | 'pending' | 'overdue' | 'completed' | 'upcoming';
 
+export interface LocationData {
+  latitude: number;
+  longitude: number;
+  altitude?: number | null;
+  accuracy?: number | null;
+  altitudeAccuracy?: number | null;
+  heading?: number | null;
+  speed?: number | null;
+  timestamp: number;
+}
+
+export interface TrackingSession {
+  id: string;
+  userId: string;
+  startTime: string;
+  endTime?: string;
+  isActive: boolean;
+  locations: LocationData[];
+}
+
+export interface SocketLocationUpdate {
+  userId: string;
+  sessionId: string;
+  location: LocationData;
+}
+

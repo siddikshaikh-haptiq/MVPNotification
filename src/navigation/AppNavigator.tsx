@@ -9,6 +9,7 @@ import {DashboardScreen} from '@screens/DashboardScreen';
 import {CompaniesScreen} from '@screens/CompaniesScreen';
 import {RemindersScreen} from '@screens/RemindersScreen';
 import {PersonalTasksScreen} from '@screens/PersonalTasksScreen';
+import {LiveTrackingScreen} from '@screens/LiveTrackingScreen';
 import {Text} from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -58,6 +59,14 @@ const MainTabs = () => {
         options={{
           tabBarLabel: 'Tasks',
           tabBarIcon: ({color}) => <Text style={{color}}>✓</Text>,
+        }}
+      />
+      <Tab.Screen
+        name="LiveTracking"
+        component={LiveTrackingScreen}
+        options={{
+          tabBarLabel: 'Tracking',
+          tabBarIcon: ({color}) => <Text style={{color}}>📍</Text>,
         }}
       />
     </Tab.Navigator>
