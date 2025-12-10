@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useTheme} from '@context/ThemeContext';
-import {Reminder, FilterType} from '@types/index';
+import {Reminder, FilterType} from '../types/index';
 import {remindersService} from '@services/remindersService';
 import {Card} from '@components/Card';
 import {Button} from '@components/Button';

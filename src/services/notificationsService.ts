@@ -1,5 +1,5 @@
 import notifee, {AndroidImportance, TriggerType} from '@notifee/react-native';
-import {Reminder, PersonalTask} from '@types/index';
+import {Reminder, PersonalTask} from '../types/index';
 import {ENV} from '@config/env';
 
 const CHANNEL_ID = 'mvpnotification-reminders';

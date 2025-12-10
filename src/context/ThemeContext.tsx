@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useState, useEffect, ReactNode} from 'react';
 import {useColorScheme} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ThemeMode} from '@types/index';
+import {ThemeMode} from '../types/index';
 
 interface ThemeContextType {
   theme: ThemeMode;

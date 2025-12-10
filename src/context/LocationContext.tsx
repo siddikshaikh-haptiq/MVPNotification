@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState, useCallback, useEffect, ReactNode} from 'react';
-import {LocationData, TrackingSession} from '@types/index';
+import {LocationData, TrackingSession} from '../types/index';
 import {locationService} from '@services/locationService';
 import {socketService} from '@services/socketService';
 import {useAuth} from './AuthContext';

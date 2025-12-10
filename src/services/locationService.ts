@@ -1,6 +1,6 @@
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import {LocationData} from '@types/index';
+import {LocationData} from '../types/index';
 import {ENV} from '@config/env';
 
 const LOCATION_TASK_NAME = 'background-location-task';
@@ -193,7 +193,7 @@ class LocationService {
       return;
     }
 
-    TaskManager.defineTask(LOCATION_TASK_NAME, ({data, error}) => {
+    TaskManager.defineTask(LOCATION_TASK_NAME, async ({data, error}) => {
       if (error) {
         console.error('Background location task error:', error);
         return;

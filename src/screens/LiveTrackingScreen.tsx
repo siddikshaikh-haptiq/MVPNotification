@@ -11,7 +11,7 @@ import {useLocation} from '@context/LocationContext';
 import {useTheme} from '@context/ThemeContext';
 import {Button} from '@components/Button';
 import {Card} from '@components/Card';
-import {LocationData} from '@types/index';
+import {LocationData} from '../types/index';
 
 export const LiveTrackingScreen: React.FC = () => {
   const {colors, isDark} = useTheme();
@@ -184,7 +184,7 @@ export const LiveTrackingScreen: React.FC = () => {
       padding: 12,
       marginBottom: 8,
       borderRadius: 8,
-      backgroundColor: colors.card,
+      backgroundColor: colors.surface,
     },
     historyTime: {
       fontSize: 12,
@@ -295,7 +295,7 @@ export const LiveTrackingScreen: React.FC = () => {
               {formatCoordinate(currentLocation.longitude)}
             </Text>
           </View>
-          {currentLocation.accuracy !== null && (
+          {currentLocation.accuracy !== null && currentLocation.accuracy !== undefined && (
             <View style={styles.locationRow}>
               <Text style={styles.label}>Accuracy:</Text>
               <Text style={styles.value}>
@@ -303,7 +303,7 @@ export const LiveTrackingScreen: React.FC = () => {
               </Text>
             </View>
           )}
-          {currentLocation.speed !== null && (
+          {currentLocation.speed !== null && currentLocation.speed !== undefined && (
             <View style={styles.locationRow}>
               <Text style={styles.label}>Speed:</Text>
               <Text style={styles.value}>
@@ -373,7 +373,7 @@ export const LiveTrackingScreen: React.FC = () => {
                   {formatCoordinate(location.latitude)},{' '}
                   {formatCoordinate(location.longitude)}
                 </Text>
-                {location.accuracy !== null && (
+                {location.accuracy !== null && location.accuracy !== undefined && (
                   <Text style={styles.historyCoords}>
                     Accuracy: {location.accuracy.toFixed(1)}m
                   </Text>

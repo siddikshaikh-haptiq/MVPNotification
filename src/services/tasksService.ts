@@ -1,4 +1,4 @@
-import {PersonalTask} from '@types/index';
+import {PersonalTask} from '../types/index';
 import {apiService} from './api';
 import {notificationsService} from './notificationsService';
 

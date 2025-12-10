@@ -1,4 +1,4 @@
-import {DashboardMetrics} from '@types/index';
+import {DashboardMetrics} from '../types/index';
 import {companiesService} from './companiesService';
 import {remindersService} from './remindersService';
 import {tasksService} from './tasksService';

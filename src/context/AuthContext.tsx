@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState, useEffect, ReactNode} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {User} from '@types/index';
+import {User} from '../types/index';
 import {ENV} from '@config/env';
 
 interface AuthContextType {

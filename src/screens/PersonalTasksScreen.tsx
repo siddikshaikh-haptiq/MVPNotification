@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useTheme} from '@context/ThemeContext';
-import {PersonalTask, FilterType} from '@types/index';
+import {PersonalTask, FilterType} from '../types/index';
 import {tasksService} from '@services/tasksService';
 import {Card} from '@components/Card';
 import {Button} from '@components/Button';
@@ -183,7 +183,7 @@ export const PersonalTasksScreen: React.FC = () => {
             <Card
               key={task.id}
               onPress={() => handleToggleComplete(task)}
-              style={task.completed && styles.completedTask}>
+              style={task.completed ? styles.completedTask : undefined}>
               <View style={styles.taskHeader}>
                 <Text
                   style={[

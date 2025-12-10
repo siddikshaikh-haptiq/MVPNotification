@@ -1,4 +1,4 @@
-import {Reminder} from '@types/index';
+import {Reminder} from '../types/index';
 import {apiService} from './api';
 import {notificationsService} from './notificationsService';
 

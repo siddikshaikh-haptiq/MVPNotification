@@ -1,6 +1,6 @@
 import {io, Socket} from 'socket.io-client';
 import {ENV} from '@config/env';
-import {LocationData, SocketLocationUpdate} from '@types/index';
+import {LocationData, SocketLocationUpdate} from '../types/index';
 
 class SocketService {
   private socket: Socket | null = null;

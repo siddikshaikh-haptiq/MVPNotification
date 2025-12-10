@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ScrollView, RefreshControl} from 'react-native';
 import {useTheme} from '@context/ThemeContext';
 import {useResponsive} from '@hooks/useResponsive';
 import {dashboardService} from '@services/dashboardService';
-import {DashboardMetrics} from '@types/index';
+import {DashboardMetrics} from '../types/index';
 import {MetricCard} from '@components/MetricCard';
 import {LoadingSpinner} from '@components/LoadingSpinner';
 
