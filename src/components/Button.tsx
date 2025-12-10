@@ -1,6 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text, ActivityIndicator, StyleSheet} from 'react-native';
 import {useTheme} from '@context/ThemeContext';
+import {analyticsService} from '@services/analyticsService';
 
 interface ButtonProps {
   title: string;
@@ -10,6 +11,8 @@ interface ButtonProps {
   loading?: boolean;
   fullWidth?: boolean;
   style?: object;
+  analyticsId?: string; // Optional: ID for analytics tracking
+  analyticsParams?: Record<string, any>; // Optional: Additional analytics parameters
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -20,8 +23,18 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   fullWidth = false,
   style,
+  analyticsId,
+  analyticsParams,
 }) => {
   const {colors} = useTheme();
+
+  const handlePress = () => {
+    // Track button click if analyticsId is provided
+    if (analyticsId) {
+      analyticsService.logButtonClick(analyticsId, undefined, analyticsParams);
+    }
+    onPress();
+  };
 
   const getButtonStyle = () => {
     const baseStyle = [styles.button, fullWidth && styles.fullWidth];
@@ -51,7 +64,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <TouchableOpacity
       style={[...getButtonStyle(), (disabled || loading) && styles.disabled, style]}
-      onPress={onPress}
+      onPress={handlePress}
       disabled={disabled || loading}
       activeOpacity={0.7}>
       {loading ? (

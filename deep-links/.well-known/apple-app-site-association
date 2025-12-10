@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAM_ID.com.mvpnotification.app",
+        "paths": [
+          "/home",
+          "/profile/*",
+          "/product/*",
+          "/companies",
+          "/reminders",
+          "/tasks",
+          "/tracking",
+          "/login"
+        ]
+      }
+    ]
+  }
+}
+

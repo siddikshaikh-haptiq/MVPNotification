@@ -1,4 +1,4 @@
-import {Company} from '@types/index';
+import {Company} from '../types/index';
 import {apiService} from './api';
 
 export const companiesService = {

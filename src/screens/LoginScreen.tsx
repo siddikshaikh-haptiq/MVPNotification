@@ -4,6 +4,7 @@ import {useAuth} from '@context/AuthContext';
 import {useTheme} from '@context/ThemeContext';
 import {Button} from '@components/Button';
 import {Input} from '@components/Input';
+import {analyticsService, AnalyticsEvents} from '@services/analyticsService';
 
 export const LoginScreen: React.FC = () => {
   const {signIn, signInWithGoogle} = useAuth();
@@ -16,6 +17,11 @@ export const LoginScreen: React.FC = () => {
   const handleSignIn = async () => {
     if (!email || !password) {
       setError('Please fill in all fields');
+      // Track form validation error
+      analyticsService.logFormSubmission('login', false, {
+        error: 'validation_error',
+        error_message: 'Missing required fields',
+      });
       return;
     }
 
@@ -24,8 +30,18 @@ export const LoginScreen: React.FC = () => {
 
     try {
       await signIn(email, password);
+      // Track successful login
+      analyticsService.logEvent(AnalyticsEvents.LOGIN, {
+        method: 'email',
+      });
+      analyticsService.logFormSubmission('login', true);
     } catch (err) {
       setError('Error signing in. Please try again.');
+      // Track failed login
+      analyticsService.logFormSubmission('login', false, {
+        error: 'sign_in_failed',
+        error_message: 'Invalid credentials',
+      });
     } finally {
       setLoading(false);
     }
@@ -37,8 +53,17 @@ export const LoginScreen: React.FC = () => {
 
     try {
       await signInWithGoogle();
+      // Track successful Google login
+      analyticsService.logEvent(AnalyticsEvents.LOGIN, {
+        method: 'google',
+      });
+      analyticsService.logFormSubmission('google_login', true);
     } catch (err) {
       setError('Error signing in with Google. Please try again.');
+      // Track failed Google login
+      analyticsService.logFormSubmission('google_login', false, {
+        error: 'google_sign_in_failed',
+      });
     } finally {
       setLoading(false);
     }
@@ -89,6 +114,8 @@ export const LoginScreen: React.FC = () => {
             loading={loading}
             fullWidth
             style={styles.button}
+            analyticsId="sign_in_button"
+            analyticsParams={{method: 'email'}}
           />
 
           <Button
@@ -98,6 +125,8 @@ export const LoginScreen: React.FC = () => {
             loading={loading}
             fullWidth
             style={styles.button}
+            analyticsId="google_sign_in_button"
+            analyticsParams={{method: 'google'}}
           />
         </View>
       </ScrollView>

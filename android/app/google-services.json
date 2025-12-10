@@ -1,0 +1,38 @@
+{
+  "_comment": "Replace this file with your actual google-services.json from Firebase Console",
+  "_instructions": "1. Go to Firebase Console (https://console.firebase.google.com)",
+  "_instructions2": "2. Select your project",
+  "_instructions3": "3. Go to Project Settings > Your apps",
+  "_instructions4": "4. Add Android app with package name: com.mvpnotification",
+  "_instructions5": "5. Download google-services.json",
+  "_instructions6": "6. Replace this file with the downloaded file",
+  "project_info": {
+    "project_number": "REPLACE_WITH_YOUR_PROJECT_NUMBER",
+    "firebase_url": "https://REPLACE_WITH_YOUR_PROJECT_ID.firebaseio.com",
+    "project_id": "REPLACE_WITH_YOUR_PROJECT_ID",
+    "storage_bucket": "REPLACE_WITH_YOUR_PROJECT_ID.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:REPLACE_WITH_YOUR_PROJECT_NUMBER:android:REPLACE_WITH_YOUR_APP_ID",
+        "android_client_info": {
+          "package_name": "com.mvpnotification"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "REPLACE_WITH_YOUR_API_KEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+

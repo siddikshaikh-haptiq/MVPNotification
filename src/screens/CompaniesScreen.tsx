@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useTheme} from '@context/ThemeContext';
-import {Company, FilterType} from '@types/index';
+import {Company, FilterType} from '../types/index';
 import {companiesService} from '@services/companiesService';
+import {analyticsService} from '@services/analyticsService';
 import {Card} from '@components/Card';
 import {Button} from '@components/Button';
 import {LoadingSpinner} from '@components/LoadingSpinner';
@@ -65,11 +66,20 @@ export const CompaniesScreen: React.FC = () => {
   const handleCreateCompany = async () => {
     try {
       await companiesService.create(newCompany);
+      // Track form submission
+      analyticsService.logFormSubmission('create_company', true, {
+        company_name: newCompany.name,
+      });
       setShowModal(false);
       setNewCompany({name: '', taxId: '', email: '', phone: ''});
       loadCompanies();
     } catch (error) {
       console.error('Error creating company:', error);
+      // Track form submission error
+      analyticsService.logFormSubmission('create_company', false, {
+        error: 'creation_failed',
+        error_message: error instanceof Error ? error.message : 'Unknown error',
+      });
     }
   };
 

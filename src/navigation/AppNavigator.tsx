@@ -1,5 +1,5 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React, {useRef, useEffect} from 'react';
+import {NavigationContainer, NavigationContainerRef} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useAuth} from '@context/AuthContext';
@@ -10,6 +10,10 @@ import {CompaniesScreen} from '@screens/CompaniesScreen';
 import {RemindersScreen} from '@screens/RemindersScreen';
 import {PersonalTasksScreen} from '@screens/PersonalTasksScreen';
 import {LiveTrackingScreen} from '@screens/LiveTrackingScreen';
+import {ProfileScreen} from '@screens/ProfileScreen';
+import {ProductScreen} from '@screens/ProductScreen';
+import {linkingConfig} from './linking';
+import {analyticsService} from '@services/analyticsService';
 import {Text} from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -76,6 +80,49 @@ const MainTabs = () => {
 export const AppNavigator: React.FC = () => {
   const {isAuthenticated, isLoading} = useAuth();
   const {colors} = useTheme();
+  const navigationRef = useRef<NavigationContainerRef<any>>(null);
+  const routeNameRef = useRef<string | undefined>();
+
+  // Helper function to get active route name from navigation state
+  const getActiveRouteName = (navigationState: any): string | undefined => {
+    if (!navigationState) {
+      return undefined;
+    }
+
+    const route = navigationState.routes[navigationState.index];
+
+    // Handle nested navigators (tabs, stacks)
+    if (route.state) {
+      return getActiveRouteName(route.state);
+    }
+
+    return route.name;
+  };
+
+  // Track screen views on navigation state change
+  const handleStateChange = () => {
+    const previousRouteName = routeNameRef.current;
+    const currentRouteName = getActiveRouteName(
+      navigationRef.current?.getState(),
+    );
+
+    if (previousRouteName !== currentRouteName && currentRouteName) {
+      // Log screen view to Firebase Analytics
+      analyticsService.logScreenView(currentRouteName);
+      routeNameRef.current = currentRouteName;
+    }
+  };
+
+  // Track initial screen on ready
+  const handleReady = () => {
+    const currentRouteName = getActiveRouteName(
+      navigationRef.current?.getState(),
+    );
+    if (currentRouteName) {
+      routeNameRef.current = currentRouteName;
+      analyticsService.logScreenView(currentRouteName);
+    }
+  };
 
   if (isLoading) {
     return null; // Or a loading screen
@@ -83,6 +130,10 @@ export const AppNavigator: React.FC = () => {
 
   return (
     <NavigationContainer
+      ref={navigationRef}
+      linking={linkingConfig}
+      onReady={handleReady}
+      onStateChange={handleStateChange}
       theme={{
         dark: false,
         colors: {
@@ -96,7 +147,19 @@ export const AppNavigator: React.FC = () => {
       }}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {isAuthenticated ? (
-          <Stack.Screen name="Main" component={MainTabs} />
+          <>
+            <Stack.Screen name="Main" component={MainTabs} />
+            <Stack.Screen
+              name="Profile"
+              component={ProfileScreen}
+              options={{headerShown: true}}
+            />
+            <Stack.Screen
+              name="Product"
+              component={ProductScreen}
+              options={{headerShown: true}}
+            />
+          </>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} />
         )}

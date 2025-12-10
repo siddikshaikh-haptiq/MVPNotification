@@ -34,6 +34,36 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+        
+        <!-- Custom URI Scheme (mvpnotification://) -->
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="mvpnotification" />
+        </intent-filter>
+        
+        <!-- Universal/App Links (https://mvpnotification.app) -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+                android:scheme="https"
+                android:host="mvpnotification.app"
+                android:pathPrefix="/" />
+        </intent-filter>
+        
+        <!-- Universal/App Links (https://www.mvpnotification.app) -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+                android:scheme="https"
+                android:host="www.mvpnotification.app"
+                android:pathPrefix="/" />
+        </intent-filter>
       </activity>
     </application>
 </manifest>
